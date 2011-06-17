@@ -1,8 +1,8 @@
 """pagerank.py illustrates how to use the pregel.py library, and tests
 that the library works.
 
-It illustrates pregel.py by computing the PageRank for a 10-vertex web
-graph.
+It illustrates pregel.py by computing the PageRank for a randomly
+chosen 10-vertex web graph.
 
 It tests pregel.py by computing the PageRank for the same graph in a
 different, more conventional way, and showing that the two outputs are
@@ -10,7 +10,7 @@ near-identical."""
 
 from pregel import *
 
-# The next two imports are only needed for the test
+# The next two imports are only needed for the test.  
 from numpy import * 
 import random
 
@@ -57,11 +57,11 @@ def pagerank_pregel(vertices):
 
 class PageRankVertex(Vertex):
 
-    def compute(self):
-        # This routine is not correct when there are pages with no
-        # outgoing links.  This problem can be solved by introducing
-        # Aggregators into the Pregel framework, but as an initial
-        # demonstration this is okay.
+    def update(self):
+        # This routine has a bug when there are pages with no outgoing
+        # links (never the case for our tests).  This problem can be
+        # solved by introducing Aggregators into the Pregel framework,
+        # but as an initial demonstration this works fine.
         if self.superstep < 50:
             self.value = 0.15 / num_vertices + 0.85*sum(
                 [pagerank for (vertex,pagerank) in self.incoming_messages])

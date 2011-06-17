@@ -9,8 +9,9 @@ class Vertex():
     def __init__(self,id,value,out_vertices):
         # This is mostly self-explanatory, but has a few quirks:
         #
-        # self.id isn't used in our pagerank example.  It's included
-        # solely because it's described in the Pregel paper.
+        # self.id is included mainly because it's described in the
+        # Pregel paper.  It is used briefly in the pagerank example,
+        # but not in any essential way, and I was tempted to omit it.
         #
         # Each vertex stores the current superstep number in
         # self.superstep.  It's arguably not wise to store many copies
@@ -39,8 +40,8 @@ class Pregel():
 
     def partition_vertices(self):
         """Returns a dict with keys 0,...,self.num_workers-1
-        representing the workers.  The corresponding values are lists
-        of vertices assigned to that worker."""
+        representing the worker threads.  The corresponding values are
+        lists of vertices assigned to that worker."""
         partition = collections.defaultdict(list)
         for vertex in self.vertices:
             partition[self.worker(vertex)].append(vertex)
@@ -95,4 +96,4 @@ class Worker(threading.Thread):
         self."""
         for vertex in self.vertices:
             if vertex.active:
-                vertex.compute()
+                vertex.update()

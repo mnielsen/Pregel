@@ -8,4 +8,4 @@ machines.
 For an illustration of how to use this implementation of Pregel, see
 the example code in pagerank.py.
 
-For more information, see LINK.
+For more information, see http://michaelnielsen.org/ddi/pregel
