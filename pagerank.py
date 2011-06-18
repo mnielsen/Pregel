@@ -8,10 +8,10 @@ It tests pregel.py by computing the PageRank for the same graph in a
 different, more conventional way, and showing that the two outputs are
 near-identical."""
 
-from pregel import *
+from pregel import Vertex, Pregel
 
 # The next two imports are only needed for the test.  
-from numpy import * 
+from numpy import mat, eye, zeros, ones, linalg
 import random
 
 num_workers = 4
