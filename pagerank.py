@@ -71,5 +71,5 @@ class PageRankVertex(Vertex):
         else:
             self.active = False
 
-if __name__ == "main":
+if __name__ == "__main__":
     main()
